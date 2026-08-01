@@ -9,80 +9,58 @@ agricultural gully system.
 
 ## Figures
 
-### Data & Feature Overview
+All 11 figures from the manuscript, extracted directly from the manuscript:
 
-![Distribution of the sediment transport target variable](figures/fig_hist_target.png)
-**Figure 3A** — Distribution of the sediment transport target variable
+![Geospatial characterisation](figures/Figure_01_geospatial_characterisation.png)
+**Figure 1** — Geospatial characterisation of the study watershed: digital
+elevation model, slope gradient, flow accumulation, drainage network, sediment
+source area, erosion susceptibility, sediment deposition zones, and field
+sampling locations.
 
-![Feature correlation heatmap](figures/fig_corr_heatmap.png)
-**Figure 3B** — Feature correlation heatmap
+![Network architecture](figures/Figure_02_network_architecture.png)
+**Figure 2** — Feedforward multilayer perceptron (MLP) architecture used as a
+benchmark for sediment transport rate prediction.
 
-![Feature vs. target scatter grid](figures/fig_feature_scatter_grid.png)
-**Figure 3C** — Feature vs. target scatter grid, with Pearson r
+![Exploratory data analysis](figures/Figure_03_exploratory_data_analysis.png)
+**Figure 3** — Exploratory data analysis (n = 100): distribution of sediment
+transport rate, correlation matrix, predictor scatter plots, and distribution
+by field scenario.
 
-![Performance by field scenario](figures/fig_boxplot_scenario.png)
-**Figure 3D** — Distribution of sediment transport rate by field scenario
+![Cross-validated performance](figures/Figure_04_cross_validated_performance.png)
+**Figure 4** — Cross-validated performance across models: mean R², fold-wise R²
+distribution, and RMSE/MAE across folds.
 
-### Benchmark Model (MLP / Linear) Cross-Validation
+![Hold-out performance](figures/Figure_05_holdout_performance_benchmark.png)
+**Figure 5** — Hold-out performance of the six-variable benchmark MLP (n = 20):
+predicted vs. observed, residuals, error distribution, and ranked values.
 
-![Cross-validated R² by model (bar)](figures/fig_cv_r2_bar.png)
-**Figure 4A** — Mean cross-validated R² ± SD across models
+![Permutation importance](figures/Figure_06_permutation_importance.png)
+**Figure 6** — Permutation importance for the six-variable deep-learning model,
+the shared hydraulic variables across the four- and six-variable models, and a
+Pareto chart of predictor importance.
 
-![Cross-validated R² by model (boxplot, 50 folds)](figures/fig_cv_r2_boxplot.png)
-**Figure 4B** — Distribution of fold-wise R² (50 folds)
+![Model comparison summary](figures/Figure_07_model_comparison_summary.png)
+**Figure 7** — Model comparison summary: cross-validated R²/RMSE/MAE across all
+four models, normalised performance profile, hold-out prediction overlay, and
+learning curve.
 
-![Cross-validated RMSE / MAE by model](figures/fig_cv_rmse_mae_bar.png)
-**Figure 4C** — Mean RMSE and MAE across folds
+![Advanced diagnostics](figures/Figure_08_advanced_diagnostics.png)
+**Figure 8** — Advanced diagnostics for the six-variable deep-learning model:
+partial dependence plots, 3-D response surface, Taylor diagram, and Q-Q plot of
+residuals.
 
-### Hold-out Performance
+![Hyperparameter grid search and scenario comparison](figures/Figure_09_hyperparameter_grid_scenario.png)
+**Figure 9** — Hyperparameter grid search results, and mean sediment transport
+rate before and after Morning Glory establishment at two ponding depths.
 
-![Hold-out predicted vs. observed (6-variable model)](figures/fig_holdout_pred_obs_6feat.png)
-**Figure 5A** — Predicted vs. observed, six-variable benchmark MLP (dashed = 1:1 line)
+![Hybrid model hold-out and cross-validation performance](figures/Figure_10_hybrid_holdout_and_cv.png)
+**Figure 10** — Hybrid CNN-BiLSTM-Attention model performance: predicted vs.
+observed on the hold-out test set, residuals, and cross-validated R² comparison
+across the linear, MLP, and hybrid models.
 
-![Hold-out residuals](figures/fig_holdout_residual.png)
-**Figure 5B** — Residuals vs. observed
-
-![Hold-out error distribution](figures/fig_holdout_error_hist.png)
-**Figure 5C** — Distribution of absolute prediction errors
-
-![Hold-out predictions across sample index](figures/fig_holdout_index_line.png)
-**Figure 5D** — Observed and predicted values, ranked from highest to lowest observed
-
-### Feature Importance
-
-![Permutation feature importance](figures/fig_importance_bar.png)
-**Figure 6A** — Permutation importance, six-variable model
-
-![Feature importance: 4-variable vs. 6-variable model](figures/fig_importance_4v6.png)
-**Figure 6B** — Shared hydraulic variables in the four- vs. six-variable models
-
-![Feature importance (Pareto)](figures/fig_importance_pareto.png)
-**Figure 6C** — Pareto chart of six-variable predictor importance
-
-### Model Comparison Summary
-
-![Grouped performance comparison, all models](figures/fig_grouped_bar_all_models.png)
-**Figure 7A** — Cross-validated R², RMSE and MAE across all four models
-
-![Model metrics radar comparison](figures/fig_metrics_radar.png)
-**Figure 7B** — Normalised cross-validated performance profile
-
-![Predicted vs. observed overlay, all models](figures/fig_comparison_scatter_overlay.png)
-**Figure 7C** — Hold-out predictions of the six-variable deep-learning and linear
-models overlaid against observed values
-
-### Hybrid CNN-BiLSTM-Attention Model
-
-![Hybrid CNN-BiLSTM-Attention network architecture](figures/fig_network_architecture.png)
-**Figure 2** — Feedforward MLP benchmark architecture (6-8-4-1 configuration)
-
-![Hybrid model: hold-out and CV performance](figures/fig_hybrid_holdout_and_cv.png)
-**Figure 10** — Hybrid model performance: predicted vs. observed, residuals, and
-cross-validated R² comparison across the linear, MLP, and hybrid models
-
-![Hybrid model: importance, SHAP, and Monte Carlo dropout uncertainty](figures/fig_hybrid_importance_shap_mcdropout.png)
+![Hybrid model interpretability and uncertainty](figures/Figure_11_hybrid_importance_shap_mcdropout.png)
 **Figure 11** — Hybrid model interpretability and uncertainty: permutation
-importance, Kernel SHAP summary, and Monte Carlo dropout prediction intervals
+importance, Kernel SHAP summary, and Monte Carlo dropout prediction intervals.
 
 ---
 
@@ -110,11 +88,11 @@ importance, Kernel SHAP summary, and Monte Carlo dropout prediction intervals
   hold-out, permutation-importance, Monte Carlo dropout, and Kernel SHAP
   pipeline. Writes `results/hybrid_*`.
 
-- `make_charts.py` — generates the benchmark-model (MLP/linear) figures.
-- `make_hybrid_charts.py` — generates the hybrid-model figures (hold-out/CV
-  comparison; importance/SHAP/Monte Carlo dropout).
+- `make_charts.py` — generates the benchmark-model (MLP/linear) analysis charts.
+- `make_hybrid_charts.py` — generates the hybrid-model analysis charts.
 
-- `figures/` — all figures referenced in the manuscript.
+- `figures/` — all 11 figures referenced in the manuscript, extracted directly
+  from the manuscript document.
 
 - `results/` — numeric outputs from both the benchmark and hybrid model
   pipelines: cross-validation results, hold-out metrics, permutation importance,
