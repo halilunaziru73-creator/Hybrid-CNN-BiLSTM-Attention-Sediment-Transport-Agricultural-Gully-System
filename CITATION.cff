@@ -1,21 +1,24 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite it as below."
+message: If you use this software, please cite it as below.
 type: software
-title: "A Hybrid CNN-BiLSTM-Attention Deep Learning Framework for Sediment Transport in an Agricultural Gully System"
+title: A Hybrid CNN-BiLSTM-Attention Deep Learning Framework for Sediment Transport
+  in an Agricultural Gully System
 authors:
-  - family-names: Halilu
-    given-names: Naziru
-repository-code: "https://github.com/halilunaziru73-creator/Hybrid-CNN-BiLSTM-Attention-Sediment-Transport-Agricultural-Gully-System"
+- family-names: Halilu
+  given-names: Naziru
+  orcid: https://orcid.org/0009-0006-2324-9599
+repository-code: https://github.com/halilunaziru73-creator/Hybrid-CNN-BiLSTM-Attention-Sediment-Transport-Agricultural-Gully-System
 license: MIT
-date-released: "2026-08-02"
+date-released: '2026-08-02'
 keywords:
-  - deep learning
-  - CNN
-  - BiLSTM
-  - attention mechanism
-  - sediment transport
-  - gully erosion
+- deep learning
+- CNN
+- BiLSTM
+- attention mechanism
+- sediment transport
+- gully erosion
 identifiers:
-  - type: doi
-    value: "10.5281/zenodo.21760029"
-    description: "Archived snapshot of version v1.0.0 on Zenodo"
+- type: doi
+  value: 10.5281/zenodo.21760029
+  description: Archived snapshot of version v1.0.0 on Zenodo
+version: 1.0.0
