@@ -1,5 +1,7 @@
 # A Hybrid CNN-BiLSTM-Attention Deep Learning Framework for Sediment Transport in an Agricultural Gully System
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE) ![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
+
 **Author:** Naziru Halilu
 
 This repository accompanies the manuscript (`manuscript/Halilu_Sediment_Transport.docx`),
@@ -144,6 +146,12 @@ python3 make_hybrid_charts.py
 ## License
 
 Released under the [MIT License](./LICENSE).
+
+## Citation
+
+If you use this repository, please cite it using the metadata in
+[`CITATION.cff`](./CITATION.cff) (GitHub renders a "Cite this repository"
+button on the repo's main page, in the top-right "About" panel).
 
 ## Related work
 
