@@ -15,3 +15,7 @@ keywords:
   - attention mechanism
   - sediment transport
   - gully erosion
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.21760029"
+    description: "Archived snapshot of version v1.0.0 on Zenodo"
