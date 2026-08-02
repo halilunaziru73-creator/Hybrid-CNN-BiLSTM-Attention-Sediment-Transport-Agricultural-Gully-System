@@ -99,7 +99,16 @@ importance, Kernel SHAP summary, and Monte Carlo dropout prediction intervals.
   Kernel SHAP values, Monte Carlo dropout distributions, and bootstrap
   confidence intervals.
 
-## Reproducing the results
+## How to Run the Code
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/halilunaziru73-creator/Hybrid-CNN-BiLSTM-Attention-Sediment-Transport-Agricultural-Gully-System.git
+cd Hybrid-CNN-BiLSTM-Attention-Sediment-Transport-Agricultural-Gully-System
+```
+
+### 2. Install dependencies and reproduce the results
 
 ```bash
 pip install scikit-learn pandas numpy scipy matplotlib --break-system-packages
