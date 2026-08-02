@@ -10,6 +10,16 @@ comparing benchmark MLP/linear-regression models against a Hybrid
 CNN-BiLSTM-Attention model for predicting sediment transport rate in an
 agricultural gully system.
 
+## Table of Contents
+
+- [Figures](#figures)
+- [Contents](#contents)
+- [How to Run the Code](#how-to-run-the-code)
+- [Model summary](#model-summary)
+- [License](#license)
+- [Citation](#citation)
+- [Related work](#related-work)
+
 ## Figures
 
 All 11 figures from the manuscript, extracted directly from the manuscript:
