@@ -1,7 +1,7 @@
 # A Hybrid CNN-BiLSTM-Attention Deep Learning Framework for Sediment Transport in an Agricultural Gully System
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE) ![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21760029.svg)](https://doi.org/10.5281/zenodo.21760029)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21760028.svg)](https://doi.org/10.5281/zenodo.21760028)
 
 **Author:** Naziru Halilu
 
