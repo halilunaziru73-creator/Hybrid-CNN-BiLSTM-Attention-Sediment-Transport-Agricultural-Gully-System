@@ -62,6 +62,15 @@
   .viva-bubble.a { border-top-right-radius:4px; background:var(--accent-bg); color:var(--accent-text); }
   .viva-nav-btns { display:flex; justify-content:space-between; margin-top:1rem; }
   .viva-counter { font-size:12px; color:var(--text-secondary); align-self:center; }
+  .viva-locked { text-align:center; padding:1rem 0; }
+  .viva-lock-icon { font-size:22px; margin-bottom:8px; }
+  .viva-locked p { font-size:13px; color:var(--text-secondary); margin:0 0 12px; }
+  .viva-pw-row { display:flex; gap:8px; max-width:280px; margin:0 auto; }
+  .viva-pw-row input { flex:1; padding:9px 12px; border-radius:8px; border:1px solid var(--border);
+    background:var(--bg); color:var(--text); font-size:14px; }
+  .viva-pw-row button { background:var(--accent-text); color:#fff; border:none; border-radius:8px;
+    padding:9px 14px; font-size:14px; font-weight:500; cursor:pointer; }
+  .viva-pw-err { font-size:12px; color:#e24b4a; margin-top:8px; display:none; }
   .back { display:inline-block; margin-top:1.5rem; font-size:13px; color:var(--accent-text); text-decoration:none; }
   @media (prefers-color-scheme: dark) {
     :root { --bg:#171715; --card:#201f1c; --border:#37362f; --text:#eceae2; --text-secondary:#9c9a92;
@@ -104,18 +113,40 @@
   </div>
   <div class="viva-card">
     <p class="viva-title">Viva-style Q&amp;A about this project</p>
-    <p class="viva-sub">A mock examiner conversation, Naziru's own answers, walked through by category.</p>
-    <div class="viva-cat-nav" id="viva-cats"></div>
-    <div id="viva-qa"></div>
-    <div class="viva-nav-btns">
-      <button class="ask-btn" onclick="vivaPrev()">&larr; Previous</button>
-      <span class="viva-counter" id="viva-counter"></span>
-      <button class="ask-btn" onclick="vivaNext()">Next &rarr;</button>
+    <p class="viva-sub">Private, for the author only.</p>
+    <div id="viva-locked" class="viva-locked">
+      <div class="viva-lock-icon">&#128274;</div>
+      <p>This section is password-protected.</p>
+      <div class="viva-pw-row">
+        <input type="password" id="viva-pw" placeholder="Password" onkeydown="if(event.key==='Enter')vivaUnlock()">
+        <button onclick="vivaUnlock()">Unlock</button>
+      </div>
+      <p class="viva-pw-err" id="viva-pw-err">Incorrect password.</p>
+    </div>
+    <div id="viva-content" style="display:none">
+      <div class="viva-cat-nav" id="viva-cats"></div>
+      <div id="viva-qa"></div>
+      <div class="viva-nav-btns">
+        <button class="ask-btn" onclick="vivaPrev()">&larr; Previous</button>
+        <span class="viva-counter" id="viva-counter"></span>
+        <button class="ask-btn" onclick="vivaNext()">Next &rarr;</button>
+      </div>
     </div>
   </div>
   <a class="back" href="https://github.com/halilunaziru73-creator/Hybrid-CNN-BiLSTM-Attention-Sediment-Transport-Agricultural-Gully-System">&larr; Back to GitHub repository</a>
 </div>
 <script>
+const VIVA_PASSWORD = '24434906';
+function vivaUnlock() {
+  const input = document.getElementById('viva-pw').value.trim();
+  if (input === VIVA_PASSWORD) {
+    document.getElementById('viva-locked').style.display = 'none';
+    document.getElementById('viva-content').style.display = 'block';
+    renderViva();
+  } else {
+    document.getElementById('viva-pw-err').style.display = 'block';
+  }
+}
 const vivaPairs = [{"cat": "The big picture", "q": "How would you explain your research topic to a non-expert in two minutes?", "a": "Sediment washing through farm gullies during storms is hard to predict with simple formulas. I built a hybrid deep-learning model that combines convolution, memory, and attention to predict it more accurately, and tested whether planting vegetation actually slows it down."}, {"cat": "The big picture", "q": "What is the ultimate goal of this research, and who benefits from it?", "a": "The ultimate goal is a more accurate, physically grounded sediment-transport predictor for small agricultural watercourses. Farmers and land managers deciding whether vegetative interventions are worth the cost are the direct beneficiaries."}, {"cat": "The big picture", "q": "Why is this specific problem worth solving right now?", "a": "Existing predictive tools for small watercourses still rely on simplistic empirical or linear models, and this is a live problem wherever agricultural land is actively eroding, which is most rain-fed farmland globally."}, {"cat": "Literature & gap", "q": "What are the three most influential papers in your field right now?", "a": "Kaloop et al. (2025) and Latif et al. (2023) on hybrid CNN-recurrent-attention hydrology models; and the Wu-Waldron root-reinforcement model underlying the vegetative-control analysis."}, {"cat": "Literature & gap", "q": "Where exactly does the existing literature fall short or fail to address your problem?", "a": "Most sediment-transport studies either use purely empirical formulas or purely black-box deep learning, few tie a hybrid deep architecture directly back to governing physical equations the way this study does."}, {"cat": "Literature & gap", "q": "How does your work build upon or challenge current established theories?", "a": "It doesn't challenge the underlying physics (Straub shear stress, Duboys, Meyer-Peter\u2013M\u00fcller) so much as show a hybrid deep model can be built on top of it and add real predictive value with proper uncertainty quantification."}, {"cat": "Methodology", "q": "Why did you choose this specific methodology over alternative approaches?", "a": "Convolution, BiLSTM and attention each capture something different, local pattern, sequence memory, and relevance weighting, and I wanted to see if combining them measurably beat a simpler MLP benchmark under honest cross-validation."}, {"cat": "Methodology", "q": "What are the primary limitations of the data collection methods you plan to use?", "a": "Only 100 observations across five field scenarios is a real constraint for deep learning; I reported this plainly rather than overselling the cross-validated performance, which was directionally but not statistically significantly better than simpler benchmarks."}, {"cat": "Methodology", "q": "If your first phase or experiment fails completely, what is your backup plan?", "a": "If the hybrid model's advantage over simpler benchmarks doesn't hold up statistically, as happened here, the honest fallback is to report the interpretability gain (SHAP, attention weights, uncertainty quantification) as the real contribution instead of raw accuracy."}, {"cat": "Contributions & novelty", "q": "What is the single most novel aspect of your proposed project?", "a": "Directly tying a hybrid CNN-BiLSTM-Attention architecture to governing sediment-transport equations and reporting uncertainty via Monte Carlo dropout, not just the model, but the honesty about where it does and doesn't outperform simpler methods."}, {"cat": "Contributions & novelty", "q": "What will we know after your PhD that the academic community does not know today?", "a": "We'll know precisely how vegetative biocontrol's effectiveness changes with hydraulic loading, strong at shallow ponding, sharply diminished once flow exceeds root-reinforcing capacity, a nuance rarely quantified this specifically before."}, {"cat": "Contributions & novelty", "q": "How do you define 'success' for this project?", "a": "Success is a model that is honestly, transparently characterised: where it adds real value (interpretability, physical grounding) and where it doesn't yet clearly beat simpler alternatives given the sample size."}, {"cat": "Ownership & scope", "q": "What are you explicitly excluding from this study, and why?", "a": "I excluded larger-scale catchment sediment transport from this study, the scope is deliberately the single experimental gully system, not a generalised watershed model yet."}, {"cat": "Ownership & scope", "q": "What do you anticipate will be the hardest part of this project for you personally?", "a": "Collecting more field observations to move past the small-sample-size limitation is the hardest and most time-consuming part, it isn't a modelling problem, it's a fieldwork one."}, {"cat": "Ownership & scope", "q": "How does this work align with your long-term career goals after graduation?", "a": "This connects to my long-term interest in physically grounded, uncertainty-aware machine learning for environmental systems, rather than black-box models applied without domain grounding."}];
 let vivaIdx = 0;
 const vivaCats = [...new Set(vivaPairs.map(p => p.cat))];
@@ -150,8 +181,6 @@ function renderViva() {
 
 function vivaNext() { vivaIdx = (vivaIdx + 1) % vivaPairs.length; renderViva(); }
 function vivaPrev() { vivaIdx = (vivaIdx - 1 + vivaPairs.length) % vivaPairs.length; renderViva(); }
-
-renderViva();
 </script>
 <script>
 async function sendQuestion() {
