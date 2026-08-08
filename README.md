@@ -13,6 +13,8 @@ agricultural gully system.
 
 ![Graphical Abstract](graphical_abstract.png)
 
+[View interactive graphical abstract →](https://halilunaziru73-creator.github.io/Hybrid-CNN-BiLSTM-Attention-Sediment-Transport-Agricultural-Gully-System/)
+
 ## Problem, Methodology, and Results
 
 **Problem.** Predictive tools for sediment transport in small agricultural watercourses and gullies typically rely on simplistic empirical or linear models, limiting their ability to capture nonlinear hydro-sedimentological dynamics or evaluate vegetative interventions.
