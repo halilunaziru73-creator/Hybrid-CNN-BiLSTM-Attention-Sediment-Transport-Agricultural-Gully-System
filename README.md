@@ -10,6 +10,15 @@ comparing benchmark MLP/linear-regression models against a Hybrid
 CNN-BiLSTM-Attention model for predicting sediment transport rate in an
 agricultural gully system.
 
+
+## Problem, Methodology, and Results
+
+**Problem.** Predictive tools for sediment transport in small agricultural watercourses and gullies typically rely on simplistic empirical or linear models, limiting their ability to capture nonlinear hydro-sedimentological dynamics or evaluate vegetative interventions.
+
+**Methodology.** A hybrid Conv1D–BiLSTM–Attention deep learning architecture was developed to predict sediment transport rate in a gully actively rehabilitated with Morning Glory (*Ipomoea carnea*) vegetative cover. A six-variable dataset (flow depth, channel slope, soil shear stress, flow velocity, channel breadth, average depth; 100 observations across five field scenarios) was linked to governing sediment-transport equations (continuity, Straub shear stress, Duboys and Meyer-Peter–Müller bed-load relations) and the Wu-Waldron root-reinforcement model. The network was trained with Adam under a weighted Huber loss with L2 regularisation and dropout, using 10×-repeated 5-fold cross-validation.
+
+**Results.** The hybrid model achieved a hold-out R² of 0.90 (RMSE = 0.45 kg/s/m, MAPE = 20.1%) and a cross-validated R² of 0.68 ± 0.36, outperforming a benchmark multilayer perceptron (R² = 0.62 ± 0.37). Flow depth and soil shear stress were identified as dominant predictors (permutation importance, Kernel SHAP). Morning Glory reduced mean sediment transport by 25.5% at 1.0 m ponding depth but only 1.4% at 1.5 m, indicating diminishing vegetative control once hydraulic loading exceeds root-reinforcing capacity.
+
 ## Table of Contents
 
 - [Figures](#figures)
