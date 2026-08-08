@@ -11,6 +11,8 @@ CNN-BiLSTM-Attention model for predicting sediment transport rate in an
 agricultural gully system.
 
 
+![Graphical Abstract](graphical_abstract.png)
+
 ## Problem, Methodology, and Results
 
 **Problem.** Predictive tools for sediment transport in small agricultural watercourses and gullies typically rely on simplistic empirical or linear models, limiting their ability to capture nonlinear hydro-sedimentological dynamics or evaluate vegetative interventions.
