@@ -30,6 +30,8 @@
   .bubble-name { font-size:12px; color:var(--text-secondary); margin:0 0 4px; }
   .bubble { background:var(--bg); border-radius:12px; border-top-left-radius:4px; padding:0.85rem 1rem;
     min-height:52px; display:flex; align-items:center; font-size:14.5px; line-height:1.6; }
+  .step-figure { width:100%; border-radius:10px; border:1px solid var(--border); margin:12px 0 4px; display:block; }
+  .step-figure-cap { font-size:11.5px; color:var(--text-secondary); margin:0 0 12px; }
   .figure { width:100%; border-radius:10px; border:1px solid var(--border); margin-bottom:1.25rem; display:block; }
   .ask-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-top:1.25rem; }
   .ask-title { font-size:15px; font-weight:600; margin:0 0 4px; }
@@ -71,6 +73,8 @@
       <div class="bubble-col">
         <p class="bubble-name">Naziru explains this step</p>
         <div class="bubble" id="detail"></div>
+        <img class="step-figure" id="step-figure" src="" alt="">
+        <p class="step-figure-cap" id="step-figure-cap"></p>
       </div>
     </div>
   </div>
@@ -129,7 +133,7 @@ async function sendQuestion() {
 }
 </script>
 <script>
-const steps = [{"t": "6-variable field dataset", "d": "Just 100 real observations across five field scenarios \u2014 small by deep-learning standards, and we say so plainly rather than dressing it up."}, {"t": "Physical equations linkage", "d": "Every input ties back to real sediment-transport physics (Straub, Duboys, Meyer-Peter\u2013M\u00fcller) \u2014 the model isn't just pattern-matching, it's grounded in equations engineers already trust."}, {"t": "Conv1D-BiLSTM-Attention", "d": "Convolution spots local patterns, BiLSTM remembers sequence, attention decides which moments actually mattered \u2014 three different ways of \u2018paying attention\u2019 working together."}, {"t": "Adam + Huber loss, CV", "d": "With only 100 data points, we hold nothing back on cross-validation rigour \u2014 10x-repeated 5-fold, specifically to stop a small dataset from flattering the model."}, {"t": "SHAP interpretation", "d": "Interestingly, the hybrid model and a simpler MLP disagreed on which variable mattered most \u2014 not a contradiction, but two different lenses on the same underlying physics (flow depth literally drives shear stress)."}, {"t": "Biocontrol effect test", "d": "Morning Glory cut sediment transport by 25.5% in shallow ponding \u2014 but only 1.4% once water got deeper. Root reinforcement has a ceiling, and this is what it looks like when hydraulic force pushes past it."}];
+const steps = [{"t": "6-variable field dataset", "img": "../figures/Figure_01_geospatial_characterisation.png", "d": "Just 100 real observations across five field scenarios (flow depth, channel slope, soil shear stress, flow velocity, channel breadth, average depth) \u2014 small by deep-learning standards, and we say so plainly rather than dressing it up."}, {"t": "Physical equations", "img": "../figures/Figure_03_exploratory_data_analysis.png", "d": "Every input ties back to real sediment-transport physics \u2014 continuity, Straub shear stress, Duboys and Meyer-Peter\u2013M\u00fcller bed-load relations \u2014 the model isn't just pattern-matching, it's grounded in equations engineers already trust."}, {"t": "Conv1D-BiLSTM-Attention", "img": "../figures/Figure_02_network_architecture.png", "d": "Convolution spots local patterns in the flow variables, BiLSTM carries sequence memory forward and backward, and attention weights decide which timesteps actually mattered for the final prediction \u2014 three different ways of 'paying attention' working together."}, {"t": "Training & CV", "img": "../figures/Figure_10_hybrid_holdout_and_cv.png", "d": "With only 100 data points, we hold nothing back on cross-validation rigour \u2014 Adam optimiser, weighted Huber loss, L2 regularisation, dropout, and 10x-repeated 5-fold CV, specifically to stop a small dataset from flattering the model."}, {"t": "SHAP interpretation", "img": "../figures/Figure_11_hybrid_importance_shap_mcdropout.png", "d": "Interestingly, the hybrid model and a simpler MLP disagreed on which variable mattered most \u2014 not a contradiction, but two different lenses on the same underlying physics, since flow depth literally drives shear stress in the Straub relation."}, {"t": "Biocontrol test", "img": "../figures/Figure_08_advanced_diagnostics.png", "d": "Morning Glory cut sediment transport by 25.5% in shallow ponding \u2014 but only 1.4% once water got deeper. Root reinforcement has a ceiling, bounded by the Wu-Waldron model, and this is what it looks like when hydraulic force pushes past it."}];
 let idx = 0;
 let timer = null;
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -174,6 +178,18 @@ function render() {
   });
   document.getElementById('detail').textContent = 'Step ' + (idx + 1) + ' — ' + steps[idx].t + '. ' + steps[idx].d;
   document.getElementById('particle').setAttribute('cx', nodeX(idx, steps.length));
+  const fig = document.getElementById('step-figure');
+  const cap = document.getElementById('step-figure-cap');
+  if (steps[idx].img) {
+    fig.src = steps[idx].img;
+    fig.alt = steps[idx].t;
+    fig.style.display = 'block';
+    cap.textContent = 'Figure from the manuscript — ' + steps[idx].t;
+    cap.style.display = 'block';
+  } else {
+    fig.style.display = 'none';
+    cap.style.display = 'none';
+  }
 }
 
 function tick() { idx = (idx + 1) % steps.length; render(); }
