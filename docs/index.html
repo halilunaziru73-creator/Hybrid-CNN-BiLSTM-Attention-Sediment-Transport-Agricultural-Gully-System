@@ -31,6 +31,16 @@
   .bubble { background:var(--bg); border-radius:12px; border-top-left-radius:4px; padding:0.85rem 1rem;
     min-height:52px; display:flex; align-items:center; font-size:14.5px; line-height:1.6; }
   .figure { width:100%; border-radius:10px; border:1px solid var(--border); margin-bottom:1.25rem; display:block; }
+  .ask-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-top:1.25rem; }
+  .ask-title { font-size:15px; font-weight:600; margin:0 0 4px; }
+  .ask-sub { font-size:13px; color:var(--text-secondary); margin:0 0 1rem; }
+  .ask-field { width:100%; padding:10px 12px; border-radius:8px; border:1px solid var(--border);
+    background:var(--bg); color:var(--text); font-size:14px; font-family:inherit; margin-bottom:10px; }
+  textarea.ask-field { min-height:90px; resize:vertical; }
+  .ask-btn { background:var(--accent-text); color:#fff; border:none; border-radius:8px; padding:10px 18px;
+    font-size:14px; font-weight:500; cursor:pointer; }
+  .ask-btn:hover { opacity:.9; }
+  .ask-note { font-size:12px; color:var(--text-secondary); margin-top:8px; }
   .back { display:inline-block; margin-top:1.5rem; font-size:13px; color:var(--accent-text); text-decoration:none; }
   @media (prefers-color-scheme: dark) {
     :root { --bg:#171715; --card:#201f1c; --border:#37362f; --text:#eceae2; --text-secondary:#9c9a92;
@@ -60,8 +70,31 @@
       </div>
     </div>
   </div>
+  <div class="ask-card">
+    <p class="ask-title">Ask a question about this work</p>
+    <p class="ask-sub">Send Naziru a question directly — it opens as an email you can send from your own inbox.</p>
+    <input class="ask-field" id="ask-name" type="text" placeholder="Your name (optional)">
+    <input class="ask-field" id="ask-email" type="email" placeholder="Your email (optional, so Naziru can reply)">
+    <textarea class="ask-field" id="ask-question" placeholder="What would you like to ask about this project?"></textarea>
+    <button class="ask-btn" onclick="sendQuestion()">Send question</button>
+    <p class="ask-note">Opens your email app with the message pre-filled. Nothing is sent until you press send there.</p>
+  </div>
   <a class="back" href="../README.md">&larr; Back to README</a>
 </div>
+<script>
+function sendQuestion() {
+  const name = document.getElementById('ask-name').value.trim();
+  const email = document.getElementById('ask-email').value.trim();
+  const question = document.getElementById('ask-question').value.trim();
+  if (!question) { document.getElementById('ask-question').focus(); return; }
+  const subject = encodeURIComponent('Question about: Hybrid CNN-BiLSTM-Attention Sediment Transport');
+  let body = question;
+  if (name) body += '\n\n\u2014 ' + name;
+  if (email) body += ' (' + email + ')';
+  const mailto = 'mailto:halilunaziru73@gmail.com?subject=' + subject + '&body=' + encodeURIComponent(body);
+  window.location.href = mailto;
+}
+</script>
 <script>
 const steps = [{"t": "6-variable field dataset", "d": "Just 100 real observations across five field scenarios \u2014 small by deep-learning standards, and we say so plainly rather than dressing it up."}, {"t": "Physical equations linkage", "d": "Every input ties back to real sediment-transport physics (Straub, Duboys, Meyer-Peter\u2013M\u00fcller) \u2014 the model isn't just pattern-matching, it's grounded in equations engineers already trust."}, {"t": "Conv1D-BiLSTM-Attention", "d": "Convolution spots local patterns, BiLSTM remembers sequence, attention decides which moments actually mattered \u2014 three different ways of \u2018paying attention\u2019 working together."}, {"t": "Adam + Huber loss, CV", "d": "With only 100 data points, we hold nothing back on cross-validation rigour \u2014 10x-repeated 5-fold, specifically to stop a small dataset from flattering the model."}, {"t": "SHAP interpretation", "d": "Interestingly, the hybrid model and a simpler MLP disagreed on which variable mattered most \u2014 not a contradiction, but two different lenses on the same underlying physics (flow depth literally drives shear stress)."}, {"t": "Biocontrol effect test", "d": "Morning Glory cut sediment transport by 25.5% in shallow ponding \u2014 but only 1.4% once water got deeper. Root reinforcement has a ceiling, and this is what it looks like when hydraulic force pushes past it."}];
 let idx = 0;
