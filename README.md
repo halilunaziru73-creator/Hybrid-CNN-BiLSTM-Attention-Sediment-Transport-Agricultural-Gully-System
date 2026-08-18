@@ -11,8 +11,6 @@ CNN-BiLSTM-Attention model for predicting sediment transport rate in an
 agricultural gully system.
 
 
-![Graphical Abstract](graphical_abstract.png)
-
 **Workflow sketch**
 
 ![Workflow Sketch](workflow_sketch.png)
