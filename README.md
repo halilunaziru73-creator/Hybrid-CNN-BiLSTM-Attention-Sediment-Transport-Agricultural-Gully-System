@@ -13,6 +13,10 @@ agricultural gully system.
 
 ![Graphical Abstract](graphical_abstract.png)
 
+**Workflow sketch**
+
+![Workflow Sketch](workflow_sketch.png)
+
 [View interactive graphical abstract →](https://halilunaziru73-creator.github.io/Hybrid-CNN-BiLSTM-Attention-Sediment-Transport-Agricultural-Gully-System/)
 
 ## Problem, Methodology, and Results
