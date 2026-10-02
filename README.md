@@ -5,7 +5,7 @@
 
 **Author:** Naziru Halilu
 
-This repository accompanies the manuscript (`manuscript/Halilu_Sediment_Transport.docx`),
+This repository accompanies the manuscript (`manuscript/Halilu_Sediment_Transport_IJRSI_2026_Published.pdf`),
 comparing benchmark MLP/linear-regression models against a Hybrid
 CNN-BiLSTM-Attention model for predicting sediment transport rate in an
 agricultural gully system.
